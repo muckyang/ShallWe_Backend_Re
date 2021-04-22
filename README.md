@@ -1,9 +1,12 @@
+### travis 적용을 위해 기존 리포지토리에서 분리.
 
-### backend -> Refactoring 
-### QueryDSL 적용, 가독성 개선, TDD 적용  
+### https://github.com/muckyang/Refactorting_ShallWe [Refactoring] 
+### QueryDSL, JUnit5 Test  
+### AWS EC2, S3, RDS 
+### travis CI / CD
  
 
-- Query DSL을 적용하여 기존 프로젝트의 문제점 해결
+- 기존 프로젝트의 문제점을 개선
 
   - 기존 Repository의 문제점
  
