@@ -75,7 +75,6 @@ public class MockTest {
         mvc.perform(get("/api/users/" + userId))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.name", is("Clone9696")))
                 .andDo(print());
     }
 
