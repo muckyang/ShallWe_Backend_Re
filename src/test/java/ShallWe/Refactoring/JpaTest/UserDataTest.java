@@ -46,11 +46,5 @@ public class UserDataTest {
 
     }
 
-    @Test
-    @DisplayName("전체 삭제")
-    public void deleteAll() throws Exception {
-        userRepository.deleteAll();
-        assertThat(0).isEqualTo(userRepository.findAll().size());
-    }
 
 }
