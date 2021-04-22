@@ -32,57 +32,57 @@ import java.util.List;
 public class OrderTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private EntityManager em;
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private TagRepository tagRepository;
-    @Autowired
-    private PartyMemberRepository partyMemberRepository;
-    @Autowired
-    private UserService userService;
-
-    @BeforeEach
-    public void createEM() {
-        logger.trace("*************** Order Test Start *******************");
-    }
-
-    @Test
-    public void getOrderPageable() {
-        PageRequest pageRequest = PageRequest.of(0, 10,
-                Sort.by(Sort.Direction.DESC, "order_id"));
-    }
-
-    @Test
-    public void fetchTest() throws Exception {
-        List<Order> result = orderRepository.findEntityGraphOrder();
-        for (Order eachOrder : result) {
-            System.out.println(eachOrder.toString());
-        }
-        System.out.println(result.size());
-    }
-
-    @Test
-    public void orderPageTest() {
-        Pageable pageable = PageRequest.of(0, 1);
-        Page<OrderResponse> result = orderRepository.getOrderPaging(pageable);
-        for (OrderResponse or : result.getContent()) {
-            System.out.println(or.toString());
-        }
-    }
-
-    @Test
-    @DisplayName("주문삭제")
-    @Rollback
-    public void deleteOrder() throws Exception {
-        Order order = orderRepository.getOne(1L);
-        orderRepository.delete(order);
-        System.out.println(orderRepository.findAll().size());
-    }
+//    @Autowired
+//    private EntityManager em;
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//    @Autowired
+//    private OrderRepository orderRepository;
+//    @Autowired
+//    private TagRepository tagRepository;
+//    @Autowired
+//    private PartyMemberRepository partyMemberRepository;
+//    @Autowired
+//    private UserService userService;
+//
+//    @BeforeEach
+//    public void createEM() {
+//        logger.trace("*************** Order Test Start *******************");
+//    }
+//
+//    @Test
+//    public void getOrderPageable() {
+//        PageRequest pageRequest = PageRequest.of(0, 10,
+//                Sort.by(Sort.Direction.DESC, "order_id"));
+//    }
+//
+//    @Test
+//    public void fetchTest() throws Exception {
+//        List<Order> result = orderRepository.findEntityGraphOrder();
+//        for (Order eachOrder : result) {
+//            System.out.println(eachOrder.toString());
+//        }
+//        System.out.println(result.size());
+//    }
+//
+//    @Test
+//    public void orderPageTest() {
+//        Pageable pageable = PageRequest.of(0, 1);
+//        Page<OrderResponse> result = orderRepository.getOrderPaging(pageable);
+//        for (OrderResponse or : result.getContent()) {
+//            System.out.println(or.toString());
+//        }
+//    }
+//
+//    @Test
+//    @DisplayName("주문삭제")
+//    @Rollback
+//    public void deleteOrder() throws Exception {
+//        Order order = orderRepository.getOne(1L);
+//        orderRepository.delete(order);
+//        System.out.println(orderRepository.findAll().size());
+//    }
 
 //    @Test
 //    public void saveOrder() {
