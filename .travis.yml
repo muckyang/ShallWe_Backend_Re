@@ -19,9 +19,9 @@ script: "./gradlew clean build"
 
 
 before_deploy:
-  - zip -r dop0617 *
+  - zip -r dop0617-shop *
   - mkdir -p deploy
-  - mv dop0617.zip deploy/dop0617.zip
+  - mv dop0617-shop.zip deploy/dop0617-shop.zip
 
 # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언한다.
 deploy:
@@ -34,6 +34,7 @@ deploy:
     acl: private # zip 파일 접근을 private으로
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deploy: true
+
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
