@@ -41,7 +41,7 @@ deploy:
     bucket: dop0617-deploy
     key: dop0617-shop.zip
     bundle_type: zip
-    application: dop0617-shop # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션 명
+    application: dop0617-shop-deploy # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션 명
 
     deployment_group: dop0617-shop-deploy-group # 웹 콘솔에서 등록한 CodeDeploy 그룹명
 
