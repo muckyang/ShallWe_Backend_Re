@@ -66,7 +66,7 @@ public class TestDBInit {
 
     @Test
     @org.junit.jupiter.api.Order(1)
-    @DisplayName("유저 데이터 생성")
+//    @DisplayName("유저 데이터 생성")
     public void init() {
         int userCnt = 100;//생성 인원 설정
         for (int i = 0; i < userCnt; i++) {
@@ -104,7 +104,7 @@ public class TestDBInit {
 
     @Test
     @org.junit.jupiter.api.Order(2)
-    @DisplayName("주문 데이터 생성")
+//    @DisplayName("주문 데이터 생성")
     public void saveOrder() {
         List<String> tags = new ArrayList<>();
         tags.add("치킨");
@@ -161,7 +161,7 @@ public class TestDBInit {
 
     @Test
     @org.junit.jupiter.api.Order(3)
-    @DisplayName("댓글 등록")
+//    @DisplayName("댓글 등록")
     public void create() throws Exception {
         Order order = orderRepository.getOne(1L);
         User user = userRepository.getOne(2L);

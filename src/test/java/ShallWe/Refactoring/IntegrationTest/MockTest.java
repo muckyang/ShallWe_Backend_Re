@@ -63,13 +63,13 @@ public class MockTest {
         log.info("******** END : MOC MVC test **********");
     }
 
-    @Test
-    public void AllTest() throws Exception {
-        getMember(Long.parseLong("10"));
-        getMember(Long.parseLong("20"));
-        getMemberRes(Long.parseLong("1"));
-        getMemberRes(Long.parseLong("2"));
-    }
+//    @Test
+//    public void AllTest() throws Exception {
+//        getMember(Long.parseLong("10"));
+//        getMember(Long.parseLong("20"));
+//        getMemberRes(Long.parseLong("1"));
+//        getMemberRes(Long.parseLong("2"));
+//    }
 
     public void getMember(Long userId) throws Exception {
         mvc.perform(get("/api/users/" + userId))
@@ -86,16 +86,16 @@ public class MockTest {
         then(response.getBody()).isNotNull();
 
     }
-    @Test
-    public void getAllOrders() throws Exception {
-        ResponseEntity<OrderResponse[]> response =
-                restTemplate.getForEntity("/api/order-all", OrderResponse[].class);
-        for( OrderResponse res : response.getBody()){
-            System.out.println(res.toString());
-        }
-        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        then(response.getBody()).isNotNull();
-
-    }
+//    @Test
+//    public void getAllOrders() throws Exception {
+//        ResponseEntity<OrderResponse[]> response =
+//                restTemplate.getForEntity("/api/order-all", OrderResponse[].class);
+//        for( OrderResponse res : response.getBody()){
+//            System.out.println(res.toString());
+//        }
+//        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        then(response.getBody()).isNotNull();
+//
+//    }
 
 }

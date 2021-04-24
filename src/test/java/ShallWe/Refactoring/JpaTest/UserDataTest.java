@@ -22,29 +22,29 @@ public class UserDataTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
-    @DisplayName("회원 생성 및 조회")
-    public void userSave() throws Exception {
-        User user = User.builder()
-                .name("Joe")
-                .password("12341234")
-                .email("12341234")
-                .nickname("nickname")
-                .address(Address.builder()
-                        .city("12341234")
-                        .street("12341234")
-                        .detail("12341234")
-                        .build())
-                .info(new Info(2012, 5, 12))
-                .build();
-        System.out.println(user.toString());
-
-        userRepository.save(user);
-        userRepository.findAll().forEach(System.out::println);
-
-        assertThat(user).isEqualTo(userRepository.getOne(user.getId()));
-
-    }
+//    @Test
+//    @DisplayName("회원 생성 및 조회")
+//    public void userSave() throws Exception {
+//        User user = User.builder()
+//                .name("Joe")
+//                .password("12341234")
+//                .email("12341234")
+//                .nickname("nickname")
+//                .address(Address.builder()
+//                        .city("12341234")
+//                        .street("12341234")
+//                        .detail("12341234")
+//                        .build())
+//                .info(new Info(2012, 5, 12))
+//                .build();
+//        System.out.println(user.toString());
+//
+//        userRepository.save(user);
+//        userRepository.findAll().forEach(System.out::println);
+//
+//        assertThat(user).isEqualTo(userRepository.getOne(user.getId()));
+//
+//    }
 
 
 }
