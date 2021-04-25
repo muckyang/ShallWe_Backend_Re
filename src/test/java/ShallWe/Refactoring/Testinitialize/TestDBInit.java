@@ -64,10 +64,10 @@ public class TestDBInit {
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
-        int userCnt = 100;//생성 인원 설정
-        for (int i = 0; i < userCnt; i++) {
-            createUser(i);
-        }
+//        int userCnt = 100;//생성 인원 설정
+//        for (int i = 0; i < userCnt; i++) {
+//            createUser(i);
+//        }
         logger.info("User Initialize COMPLETED");
     }
 
