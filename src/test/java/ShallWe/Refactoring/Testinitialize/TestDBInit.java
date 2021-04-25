@@ -44,8 +44,8 @@ public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
 //    @Autowired
 //    private OrderRepository orderRepository;
 //    @Autowired
