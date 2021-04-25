@@ -34,7 +34,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(
+        properties = {"spring.config.location=classpath:application-init.yml"}
+)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Transactional
 @Rollback(false)
@@ -53,8 +55,6 @@ public class TestDBInit {
     private TagRepository tagRepository;
     @Autowired
     private PartyMemberRepository partyMemberRepository;
-    @Autowired
-    private UserService userService;
 
     @BeforeEach
     public void before() {
@@ -117,7 +117,7 @@ public class TestDBInit {
                 .endTime(LocalDateTime.now().plusHours(4L))
                 .build();
 
-        User user = userService.findUser(request.getUserId());
+        User user = userRepository.getOne(request.getUserId());
 
         Order order = Order.builder()
                 .user(user)
