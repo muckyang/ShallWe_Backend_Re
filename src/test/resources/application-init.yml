@@ -1,16 +1,16 @@
 spring:
-  output:
-    ansi:
-      enabled: always
+#  output:
+#    ansi:
+#      enabled: always
   datasource:
     url: jdbc:mariadb://shallwe.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwetest
     username: admin
     password: yh7839205!
     driver-class-name: org.mariadb.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update #create , create-drop , update , validate, none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update #create , create-drop , update , validate, none
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
