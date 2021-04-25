@@ -39,12 +39,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 )
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Transactional
-//@Rollback(false)
+@Rollback(false)
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private EntityManager em;
+
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -96,7 +95,7 @@ public class TestDBInit {
                         .build())
                 .info(new Info(year, month, day))
                 .build();
-        em.persist(user);
+        userRepository.save(user);
     }
 
 //    @Test
