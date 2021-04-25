@@ -46,19 +46,19 @@ public class TestDBInit {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private CommentRepository commentRepository;
-    @Autowired
-    private TagRepository tagRepository;
-    @Autowired
-    private PartyMemberRepository partyMemberRepository;
-
-    @BeforeEach
-    public void before() {
-        logger.trace("*************** Start Test DB Init *******************");
-    }
+//    @Autowired
+//    private OrderRepository orderRepository;
+//    @Autowired
+//    private CommentRepository commentRepository;
+//    @Autowired
+//    private TagRepository tagRepository;
+//    @Autowired
+//    private PartyMemberRepository partyMemberRepository;
+//
+//    @BeforeEach
+//    public void before() {
+//        logger.trace("*************** Start Test DB Init *******************");
+//    }
 
     @Test
     @org.junit.jupiter.api.Order(1)
@@ -68,35 +68,35 @@ public class TestDBInit {
 //        for (int i = 0; i < userCnt; i++) {
 //            createUser(i);
 //        }
-        logger.info("User Initialize COMPLETED");
+//        logger.info("User Initialize COMPLETED");
     }
 
-    private void createUser(int num) {
-        String randomNum = (int) (Math.random() * 1000) + (num * 1000) + "";
-        String name = "Clone" + randomNum;
-        String email = "user" + randomNum + "@naver.com";
-        String password = "12341234";
-        String nickname = "nick" + randomNum;
-        String city = "seoul";
-        String street = randomNum + "street";
-        String detail ="room 1" + randomNum;
-        int year = (int) (Math.random() * 30) + 1990;
-        int month = (int) (Math.random() * 12) + 1;
-        int day = (int) (Math.random() * 28) + 1;
-        User user = User.builder()
-                .name(name)
-                .password(password)
-                .email(email)
-                .nickname(nickname)
-                .address(Address.builder()
-                        .city(city)
-                        .street(street)
-                        .detail(detail)
-                        .build())
-                .info(new Info(year, month, day))
-                .build();
-        userRepository.save(user);
-    }
+//    private void createUser(int num) {
+//        String randomNum = (int) (Math.random() * 1000) + (num * 1000) + "";
+//        String name = "Clone" + randomNum;
+//        String email = "user" + randomNum + "@naver.com";
+//        String password = "12341234";
+//        String nickname = "nick" + randomNum;
+//        String city = "seoul";
+//        String street = randomNum + "street";
+//        String detail ="room 1" + randomNum;
+//        int year = (int) (Math.random() * 30) + 1990;
+//        int month = (int) (Math.random() * 12) + 1;
+//        int day = (int) (Math.random() * 28) + 1;
+//        User user = User.builder()
+//                .name(name)
+//                .password(password)
+//                .email(email)
+//                .nickname(nickname)
+//                .address(Address.builder()
+//                        .city(city)
+//                        .street(street)
+//                        .detail(detail)
+//                        .build())
+//                .info(new Info(year, month, day))
+//                .build();
+//        userRepository.save(user);
+//    }
 
 //    @Test
 //    @org.junit.jupiter.api.Order(2)
