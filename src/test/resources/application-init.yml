@@ -3,7 +3,7 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:mariadb://dop0617-shop-maria103dialect.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwetest
+    url: jdbc:mariadb://dop0617-shop-maria103dialect.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwe
     username: admin
     password: yh7839205!
     driver-class-name: org.mariadb.jdbc.Driver
