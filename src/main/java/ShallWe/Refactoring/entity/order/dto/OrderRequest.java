@@ -12,18 +12,17 @@ import java.util.List;
 @Builder
 public class OrderRequest {
     @NotBlank
-    private Long userId;
+    private  Long userId;
     @NotBlank
-    private String title;
+    private  String title;
     @NotBlank
-    private String description;
+    private  String description;
     @NotBlank
-    private int goalPrice;
+    private  int goalPrice;
     @NotBlank
-    private String category;
-
-    private List<String> tags;
+    private  String category;
+    private  List<String> tags = new ArrayList<>();
     @NotBlank
-    private LocalDateTime endTime;
-    private int pay;
+    private  LocalDateTime endTime;
+    private  int pay;
 }

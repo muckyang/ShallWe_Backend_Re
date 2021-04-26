@@ -37,6 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Transactional
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
