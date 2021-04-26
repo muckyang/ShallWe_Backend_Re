@@ -21,7 +21,6 @@ public class OrderRequest {
     private int goalPrice;
     @NotBlank
     private String category;
-
     private List<String> tags;
     @NotBlank
     private LocalDateTime endTime;

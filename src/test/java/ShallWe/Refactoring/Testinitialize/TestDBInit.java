@@ -71,7 +71,9 @@ public class TestDBInit {
         String nickname = "nick" + randomNum;
         String city = "seoul";
         String street = randomNum + "street";
+
         String detail = "room 1" + randomNum;
+
         int year = (int) (Math.random() * 30) + 1990;
         int month = (int) (Math.random() * 12) + 1;
         int day = (int) (Math.random() * 28) + 1;
@@ -79,6 +81,7 @@ public class TestDBInit {
                 .name(name)
                 .password(password)
                 .email(email)
+
                 .nickname(nickname)
                 .city(city)
                 .street(street)
