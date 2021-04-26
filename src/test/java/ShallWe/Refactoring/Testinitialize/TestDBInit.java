@@ -35,11 +35,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(
+        properties = {"spring.config.location=classpath:application-init.yml"}
+)
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private UserService userService;
 
