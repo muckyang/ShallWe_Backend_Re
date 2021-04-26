@@ -35,7 +35,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(
+        properties = {"spring.config.location=classpath:application-init.yml"}
+)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@Transactional
 public class TestDBInit {
@@ -69,14 +71,17 @@ public class TestDBInit {
         String nickname = "nick" + randomNum;
         String city = "seoul";
         String street = randomNum + "street";
-        String detail ="room 1" + randomNum;
+
+        String detail = "room 1" + randomNum;
+
         int year = (int) (Math.random() * 30) + 1990;
         int month = (int) (Math.random() * 12) + 1;
         int day = (int) (Math.random() * 28) + 1;
         UserRequest userReq = UserRequest.builder()
                 .name(name)
-                .email(email)
                 .password(password)
+                .email(email)
+
                 .nickname(nickname)
                 .city(city)
                 .street(street)
