@@ -11,10 +11,9 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create  #create , create-drop , update , validate, none
+      dialect: org.hibernate.dialect.MariaDB104Dialect
+      ddl-auto: none  #create , create-drop , update , validate, none
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-hibernate:
-  dialect: org.hibernate.dialect.MariaDB104Dialect
