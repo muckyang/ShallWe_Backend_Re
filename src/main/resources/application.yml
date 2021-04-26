@@ -5,8 +5,8 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:mariadb://dop0617-shop-maria103dialect.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwe
-    username: admin
+    url: jdbc:mariadb://rds-dop0617.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwe
+    username: root
     password: yh7839205!
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
@@ -16,6 +16,6 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-        dialect: org.hibernate.dialect.MariaDB103Dialect
+#        dialect: org.hibernate.dialect.MariaDB103Dialect
 
 
