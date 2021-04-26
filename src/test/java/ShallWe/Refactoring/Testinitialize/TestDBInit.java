@@ -13,6 +13,7 @@ import ShallWe.Refactoring.entity.partyMember.PartyStatus;
 import ShallWe.Refactoring.entity.tag.Tag;
 import ShallWe.Refactoring.entity.user.Info;
 import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.entity.user.dto.UserRequest;
 import ShallWe.Refactoring.repository.comment.CommentRepository;
 import ShallWe.Refactoring.repository.order.OrderRepository;
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
@@ -36,22 +37,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-
-//@Rollback(false)
+@Rollback(false)
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-//    @Autowired
-//    private UserRepository userRepository;
-//    @Autowired
-//    private OrderRepository orderRepository;
-//    @Autowired
-//    private CommentRepository commentRepository;
-//    @Autowired
-//    private TagRepository tagRepository;
-//    @Autowired
-//    private PartyMemberRepository partyMemberRepository;
+    @Autowired
+    private UserService userService;
 
     @BeforeEach
     public void before() {
@@ -59,43 +50,43 @@ public class TestDBInit {
     }
 
     @Test
-    @Transactional
+
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
-//        int userCnt = 100;//생성 인원 설정
-//        for (int i = 0; i < userCnt; i++) {
-//            createUser(i);
-//        }
+        int userCnt = 100;//생성 인원 설정
+        for (int i = 0; i < userCnt; i++) {
+            createUser(i);
+        }
         logger.info("User Initialize COMPLETED");
     }
 
-//    private void createUser(int num) {
-//        String randomNum = (int) (Math.random() * 1000) + (num * 1000) + "";
-//        String name = "Clone" + randomNum;
-//        String email = "user" + randomNum + "@naver.com";
-//        String password = "12341234";
-//        String nickname = "nick" + randomNum;
-//        String city = "seoul";
-//        String street = randomNum + "street";
-//        String detail ="room 1" + randomNum;
-//        int year = (int) (Math.random() * 30) + 1990;
-//        int month = (int) (Math.random() * 12) + 1;
-//        int day = (int) (Math.random() * 28) + 1;
-//        User user = User.builder()
-//                .name(name)
-//                .password(password)
-//                .email(email)
-//                .nickname(nickname)
-//                .address(Address.builder()
-//                        .city(city)
-//                        .street(street)
-//                        .detail(detail)
-//                        .build())
-//                .info(new Info(year, month, day))
-//                .build();
-//        userRepository.save(user);
-//    }
+    private void createUser(int num) {
+        String randomNum = (int) (Math.random() * 1000) + (num * 1000) + "";
+        String name = "Clone" + randomNum;
+        String email = "user" + randomNum + "@naver.com";
+        String password = "12341234";
+        String nickname = "nick" + randomNum;
+        String city = "seoul";
+        String street = randomNum + "street";
+        String detail ="room 1" + randomNum;
+        int year = (int) (Math.random() * 30) + 1990;
+        int month = (int) (Math.random() * 12) + 1;
+        int day = (int) (Math.random() * 28) + 1;
+        UserRequest userReq = UserRequest.builder()
+                .name(name)
+                .email(email)
+                .password(password)
+                .nickname(nickname)
+                .city(city)
+                .street(street)
+                .detail(detail)
+                .year(year)
+                .month(month)
+                .day(day)
+                .build();
+        userService.save(userReq);
+    }
 //
 //    @Test
 //    @org.junit.jupiter.api.Order(2)
