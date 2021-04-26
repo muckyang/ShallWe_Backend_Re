@@ -36,22 +36,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Transactional
+//@Transactional
 //@Rollback(false)
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private CommentRepository commentRepository;
-    @Autowired
-    private TagRepository tagRepository;
-    @Autowired
-    private PartyMemberRepository partyMemberRepository;
+//    @Autowired
+//    private UserRepository userRepository;
+//    @Autowired
+//    private OrderRepository orderRepository;
+//    @Autowired
+//    private CommentRepository commentRepository;
+//    @Autowired
+//    private TagRepository tagRepository;
+//    @Autowired
+//    private PartyMemberRepository partyMemberRepository;
 
     @BeforeEach
     public void before() {
