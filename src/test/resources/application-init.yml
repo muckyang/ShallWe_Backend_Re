@@ -1,12 +1,10 @@
-server:
-  port: 8082
 spring:
   output:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:mariadb://rds-dop0617-mariadb.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwetest?useUnicode=true&characterEncoding=utf-8
-    username: root
+    url: jdbc:mariadb://shallwe.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwetest?useUnicode=true&characterEncoding=utf-8
+    username: admin
     password: yh7839205!
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
