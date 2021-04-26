@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//@Transactional
+
 //@Rollback(false)
 public class TestDBInit {
 
@@ -59,6 +59,7 @@ public class TestDBInit {
     }
 
     @Test
+    @Transactional
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
