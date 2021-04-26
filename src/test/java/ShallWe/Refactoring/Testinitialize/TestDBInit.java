@@ -56,10 +56,7 @@ public class TestDBInit {
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
-        int userCnt = 100;//생성 인원 설정
-        for (int i = 0; i < userCnt; i++) {
-            createUser(i);
-        }
+        createUser(1);
         logger.info("User Initialize COMPLETED");
     }
 
@@ -71,17 +68,15 @@ public class TestDBInit {
         String nickname = "nick" + randomNum;
         String city = "seoul";
         String street = randomNum + "street";
-
         String detail = "room 1" + randomNum;
-
         int year = (int) (Math.random() * 30) + 1990;
         int month = (int) (Math.random() * 12) + 1;
         int day = (int) (Math.random() * 28) + 1;
+
         UserRequest userReq = UserRequest.builder()
                 .name(name)
                 .password(password)
                 .email(email)
-
                 .nickname(nickname)
                 .city(city)
                 .street(street)
