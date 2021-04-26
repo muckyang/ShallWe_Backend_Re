@@ -36,7 +36,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
-        properties = {"spring.config.location=classpath:application-init.yml"}
+        properties = {"spring.config.location=classpath:application-init.yml"},
+        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT
 )
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@Transactional
