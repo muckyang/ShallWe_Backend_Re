@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.AuditorAware;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
+import java.util.TimeZone;
 import java.util.UUID;
 
 
@@ -18,4 +20,9 @@ public class RunApplication {
     public AuditorAware<String> auditorProvider(){
         return ()-> Optional.of(UUID.randomUUID().toString());
     }
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+    }
+
 }
