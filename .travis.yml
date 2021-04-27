@@ -6,8 +6,8 @@ branches:
   only:
     - master
 
-addons:
-  mariadb: '10.3'
+#addons:
+#  mariadb: '10.3'
 # Travis CI 서버의 Home
 cache:
   directories:

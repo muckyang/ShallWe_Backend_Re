@@ -48,9 +48,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'com.querydsl:querydsl-jpa'
+	runtimeOnly 'com.h2database:h2'
 	compile("org.mariadb.jdbc:mariadb-java-client")
 //	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-//	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.3'
 	annotationProcessor 'org.projectlombok:lombok'
