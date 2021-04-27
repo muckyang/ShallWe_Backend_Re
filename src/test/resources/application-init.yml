@@ -2,16 +2,8 @@ spring:
   output:
     ansi:
       enabled: always
-  datasource:
-    url: jdbc:mariadb://dop0617-shop-maria103dialect.ctfsm3aapnnp.ap-northeast-2.rds.amazonaws.com:3306/shallwetest
-    username: admin
-    password: yh7839205!
-    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: create #create , create-drop , update , validate, none
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-        dialect: org.hibernate.dialect.MariaDB103Dialect
