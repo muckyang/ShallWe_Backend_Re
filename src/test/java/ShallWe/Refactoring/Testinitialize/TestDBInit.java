@@ -16,6 +16,7 @@ import ShallWe.Refactoring.entity.user.Info;
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.entity.user.dto.UserRequest;
 
+import ShallWe.Refactoring.repository.comment.CommentRepository;
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
 import ShallWe.Refactoring.service.OrderService;
 import ShallWe.Refactoring.service.PartyMemberService;
@@ -54,6 +55,9 @@ public class TestDBInit {
     private TagService tagService;
     @Autowired
     private PartyMemberRepository partyMemberRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+
 
     @BeforeEach
     public void before() {
@@ -64,8 +68,9 @@ public class TestDBInit {
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
-        for(int num = 1 ;num<100;num++)
-        createUser(num);
+        for(int num = 1 ;num<100;num++) {
+            createUser(num);
+        }
         logger.info("User Initialize COMPLETED");
     }
 
@@ -122,6 +127,7 @@ public class TestDBInit {
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .endTime(request.getEndTime())
+                .tags(new ArrayList<>())
                 .goalPrice(request.getGoalPrice())
                 .category("DELIVERY")
                 .build();
@@ -130,14 +136,12 @@ public class TestDBInit {
         Order order =orderService.createOrder(orderReq,user);
         logger.info("before tag Save");
 
-        List<String> tagList = request.getTags();
-        for (String tagName : tagList) {
+        List<String> tagReqList = request.getTags();
+        for (String tagName : tagReqList) {
             Tag tag = new Tag(tagName);
             tag.setOrder(order);
-            logger.info("order use -> order insert");
-            tagList.add(tag.getName());
         }
-        tagService.createTags(order,tagList);
+        tagService.createTags(order,tagReqList);
 
         logger.info("before Party New");
         PartyMember partyMember= PartyMember.builder()
@@ -154,23 +158,23 @@ public class TestDBInit {
         logger.info("complete");
     }
 
-//    @Test
-//    @org.junit.jupiter.api.Order(3)
-//    @DisplayName("댓글 등록")
-//    public void create() throws Exception {
-//        Order order = orderRepository.getOne(1L);
-//        User user = userRepository.getOne(2L);
-//        Comment comment = Comment.builder()
-//                .order(order)
-//                .user(user)
-//                .content("댓글 작성 합니다")
-//                .status(CommentStatus.NORMAL)
-//                .build();
-//
-//        commentRepository.save(comment);
-//        order.addComment(comment);
-//        assertThat(comment).isEqualTo(commentRepository.getOne(comment.getId()));
-//
-//    }
+    @Test
+    @org.junit.jupiter.api.Order(3)
+    @DisplayName("댓글 등록")
+    public void create() throws Exception {
+        Order order = orderService.findOrder(1L);
+        User user = userService.findUser(2L);
+        Comment comment = Comment.builder()
+                .order(order)
+                .user(user)
+                .content("댓글 작성 합니다")
+                .status(CommentStatus.NORMAL)
+                .build();
+
+        commentRepository.save(comment);
+        order.addComment(comment);
+        assertThat(comment).isEqualTo(commentRepository.getOne(comment.getId()));
+
+    }
 
 }
