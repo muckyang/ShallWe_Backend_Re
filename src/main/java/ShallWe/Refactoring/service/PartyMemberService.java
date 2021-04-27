@@ -21,7 +21,7 @@ public class PartyMemberService {
 
     private final PartyMemberRepository partyMemberRepository;
 
-    public void createPartyMember(User user, Order order, int price) {
+    public void createPartyMember(User user , Order order ,int price) {
         PartyMember partyMember = PartyMember.builder()
                 .user(user)
                 .order(order)

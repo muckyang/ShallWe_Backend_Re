@@ -10,15 +10,16 @@ import ShallWe.Refactoring.entity.order.OrderStatus;
 import ShallWe.Refactoring.entity.order.dto.OrderRequest;
 import ShallWe.Refactoring.entity.partyMember.PartyMember;
 import ShallWe.Refactoring.entity.partyMember.PartyStatus;
+import ShallWe.Refactoring.entity.partyMember.dto.PartyMemberRequest;
 import ShallWe.Refactoring.entity.tag.Tag;
 import ShallWe.Refactoring.entity.user.Info;
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.entity.user.dto.UserRequest;
-import ShallWe.Refactoring.repository.comment.CommentRepository;
-import ShallWe.Refactoring.repository.order.OrderRepository;
+
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
-import ShallWe.Refactoring.repository.tag.TagRepository;
-import ShallWe.Refactoring.repository.user.UserRepository;
+import ShallWe.Refactoring.service.OrderService;
+import ShallWe.Refactoring.service.PartyMemberService;
+import ShallWe.Refactoring.service.TagService;
 import ShallWe.Refactoring.service.UserService;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -36,17 +37,23 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
-        properties = {"spring.config.location=classpath:application.properties"},
-        webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT
+        properties = {"spring.config.location=classpath:application-init.yml"}
 )
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//@Transactional
+@Transactional
+@Rollback(false)
 public class TestDBInit {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private TagService tagService;
+    @Autowired
+    private PartyMemberRepository partyMemberRepository;
 
     @BeforeEach
     public void before() {
@@ -57,7 +64,8 @@ public class TestDBInit {
     @org.junit.jupiter.api.Order(1)
     @DisplayName("유저 데이터 생성")
     public void init() {
-        createUser(1);
+        for(int num = 1 ;num<100;num++)
+        createUser(num);
         logger.info("User Initialize COMPLETED");
     }
 
@@ -88,64 +96,64 @@ public class TestDBInit {
                 .build();
         userService.save(userReq);
     }
-//
-//    @Test
-//    @org.junit.jupiter.api.Order(2)
-//    @DisplayName("주문 데이터 생성")
-//    public void saveOrder() {
-//        List<String> tags = new ArrayList<>();
-//        tags.add("치킨");
-//        tags.add("음식");
-//
-//        OrderRequest request = OrderRequest.builder()
-//                .userId(1L)
-//                .title("치킨먹을사람~")
-//                .description("치킨 같이 시켜 먹어요!")
-//                .tags(tags)
-//                .category(Category.DELIVERY.toString())
-//                .goalPrice(32000)
-//                .endTime(LocalDateTime.now().plusHours(4L))
-//                .build();
-//
-//        User user = userRepository.getOne(request.getUserId());
-//
-//        Order order = Order.builder()
-//                .user(user)
-//                .title(request.getTitle())
-//                .description(request.getDescription())
-//                .endTime(request.getEndTime())
-//                .goalPrice(request.getGoalPrice())
-//                .category(Category.DELIVERY)
-//                .status(OrderStatus.WAITING)
-//                .build();
-//
-//        logger.info(order.toString());
-//        orderRepository.save(order);
-//        logger.info("before tag Save");
-//
-//        List<String> tagList = request.getTags();
-//        for (String tagName : tagList) {
-//            Tag tag = new Tag(tagName);
-//            tag.setOrder(order);
-//            logger.info("order use -> order insert");
-//            tagRepository.save(tag);
-//        }
-//
-//        logger.info("before Party New");
-//        PartyMember partyMember = PartyMember.builder()
-//                .user(user)
-//                .order(order)
-//                .price(6000)
-//                .status(PartyStatus.JOIN)
-//                .joinDescription("글 게시자 본인 입니다.")
-//                .build();
-//
-//        logger.info("before Party Save");
-//        partyMemberRepository.save(partyMember);
-//
-//        logger.info("complete");
-//    }
-//
+
+    @Test
+    @org.junit.jupiter.api.Order(2)
+    @DisplayName("주문 데이터 생성")
+    public void saveOrder() {
+        List<String> tags = new ArrayList<>();
+        tags.add("치킨");
+        tags.add("음식");
+
+        OrderRequest request = OrderRequest.builder()
+                .userId(1L)
+                .title("치킨먹을사람~")
+                .description("치킨 같이 시켜 먹어요!")
+                .tags(tags)
+                .category(Category.DELIVERY.toString())
+                .goalPrice(32000)
+                .endTime(LocalDateTime.now().plusHours(4L))
+                .build();
+
+        User user = userService.findUser(request.getUserId());
+
+        OrderRequest orderReq = OrderRequest.builder()
+                .userId(user.getId())
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .endTime(request.getEndTime())
+                .goalPrice(request.getGoalPrice())
+                .category("DELIVERY")
+                .build();
+
+        logger.info(orderReq.toString());
+        Order order =orderService.createOrder(orderReq,user);
+        logger.info("before tag Save");
+
+        List<String> tagList = request.getTags();
+        for (String tagName : tagList) {
+            Tag tag = new Tag(tagName);
+            tag.setOrder(order);
+            logger.info("order use -> order insert");
+            tagList.add(tag.getName());
+        }
+        tagService.createTags(order,tagList);
+
+        logger.info("before Party New");
+        PartyMember partyMember= PartyMember.builder()
+                .user(user)
+                .order(order)
+                .price(6000)
+                .status(PartyStatus.JOIN)
+                .joinDescription("글 게시자 본인 입니다.")
+                .build();
+
+        logger.info("before Party Save");
+        partyMemberRepository.save(partyMember);
+
+        logger.info("complete");
+    }
+
 //    @Test
 //    @org.junit.jupiter.api.Order(3)
 //    @DisplayName("댓글 등록")
