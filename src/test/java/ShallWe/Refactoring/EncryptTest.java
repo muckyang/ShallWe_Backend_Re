@@ -13,10 +13,10 @@ public class EncryptTest {
 //        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
 //        encryptor.setProvider(new BouncyCastleProvider());
 //        encryptor.setPoolSize(2);
-//        encryptor.setPassword("MySecretKey");
+//        encryptor.setPassword("xoxo");
 //        encryptor.setAlgorithm("PBEWithSHA256And128BitAES-CBC-BC");
 //
-//        String plainText = "root"; // 암호화 할 내용
+//        String plainText = "암호화 할 문자";
 //        String encryptedText = encryptor.encrypt(plainText);
 //        String decryptedText = encryptor.decrypt(encryptedText);
 //        System.out.println("Enc:"+encryptedText+", Dec:"+decryptedText);
