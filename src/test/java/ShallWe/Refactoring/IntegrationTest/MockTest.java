@@ -31,61 +31,60 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 
 @SpringBootTest(
-        properties = {"spring.config.location=classpath:application-test.yml"},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+        properties = {"spring.config.location=classpath:application-test.yml"}
 )
 @AutoConfigureMockMvc
 public class MockTest {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    MockMvc mvc;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @Autowired
-    private WebApplicationContext ctx;
-
-
-    @BeforeEach
-    public void before() {
-        log.info("##### USER GET 테스트 #####");
-        log.info("******** START : MOC MVC test **********");
-    }
-
-    @AfterEach
-    public void after() {
-        log.info("******** END : MOC MVC test **********");
-    }
-
-//    @Test
-//    public void AllTest() throws Exception {
-//        getMember(Long.parseLong("10"));
-//        getMember(Long.parseLong("20"));
-//        getMemberRes(Long.parseLong("1"));
-//        getMemberRes(Long.parseLong("2"));
+//    private final Logger log = LoggerFactory.getLogger(this.getClass());
+//
+//    @Autowired
+//    MockMvc mvc;
+//
+//    @Autowired
+//    private UserService userService;
+//
+//    @Autowired
+//    private TestRestTemplate restTemplate;
+//
+//    @Autowired
+//    private WebApplicationContext ctx;
+//
+//
+//    @BeforeEach
+//    public void before() {
+//        log.info("##### USER GET 테스트 #####");
+//        log.info("******** START : MOC MVC test **********");
 //    }
-
-    public void getMember(Long userId) throws Exception {
-        mvc.perform(get("/api/users/" + userId))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andDo(print());
-    }
-
-    public void getMemberRes(Long userId) throws Exception {
-        ResponseEntity<UserResponse> response =
-                restTemplate.getForEntity("/api/users/" + userId, UserResponse.class);
-
-        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        then(response.getBody()).isNotNull();
-
-    }
+//
+//    @AfterEach
+//    public void after() {
+//        log.info("******** END : MOC MVC test **********");
+//    }
+//
+////    @Test
+////    public void AllTest() throws Exception {
+////        getMember(Long.parseLong("10"));
+////        getMember(Long.parseLong("20"));
+////        getMemberRes(Long.parseLong("1"));
+////        getMemberRes(Long.parseLong("2"));
+////    }
+//
+//    public void getMember(Long userId) throws Exception {
+//        mvc.perform(get("/api/users/" + userId))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andDo(print());
+//    }
+//
+//    public void getMemberRes(Long userId) throws Exception {
+//        ResponseEntity<UserResponse> response =
+//                restTemplate.getForEntity("/api/users/" + userId, UserResponse.class);
+//
+//        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        then(response.getBody()).isNotNull();
+//
+//    }
 //    @Test
 //    public void getAllOrders() throws Exception {
 //        ResponseEntity<OrderResponse[]> response =
