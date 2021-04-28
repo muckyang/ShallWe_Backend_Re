@@ -26,15 +26,16 @@ public class CommentController {
     public CommentResponse addComment(@RequestBody CommentRequest request) {
         User user = userService.findUser(request.getUserId());
         Order order = orderService.findOrder(request.getOrderId());
-        return commentService.createComment(order,user ,request.getContent());
+        Comment comment = commentService.createComment(order, user, request.getContent());
+        return new CommentResponse(comment);
     }
 
     @PatchMapping("/comment/{commentId}")
     @ApiOperation("댓글 수정")
     public CommentResponse updateComment(@PathVariable("commentId") Long commentId,
-                                         @RequestBody CommentRequest request){
+                                         @RequestBody CommentRequest request) {
         String updateText = request.getContent();
-        commentService.patchText(commentId,updateText);
+        commentService.patchText(commentId, updateText);
 
         return commentService.findById(commentId);
     }
