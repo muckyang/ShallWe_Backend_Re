@@ -19,7 +19,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final CommentHistoryRepository historyRepository;
 
-    public CommentResponse createComment(Order order, User user, String content) {
+    public Comment createComment(Order order, User user, String content) {
         Comment comment = Comment.builder()
                 .order(order)
                 .user(user)
@@ -29,8 +29,7 @@ public class CommentService {
         order.addComment(comment);
 
         commentRepository.save(comment);
-
-        return new CommentResponse(comment);
+        return comment;
     }
 
     public CommentResponse findById(Long commentId) {

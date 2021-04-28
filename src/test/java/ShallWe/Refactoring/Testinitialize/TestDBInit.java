@@ -4,6 +4,7 @@ package ShallWe.Refactoring.Testinitialize;
 import ShallWe.Refactoring.entity.address.Address;
 import ShallWe.Refactoring.entity.comment.Comment;
 import ShallWe.Refactoring.entity.comment.CommentStatus;
+import ShallWe.Refactoring.entity.comment.dto.CommentRequest;
 import ShallWe.Refactoring.entity.order.Category;
 import ShallWe.Refactoring.entity.order.Order;
 import ShallWe.Refactoring.entity.order.OrderStatus;
@@ -18,10 +19,7 @@ import ShallWe.Refactoring.entity.user.dto.UserRequest;
 
 import ShallWe.Refactoring.repository.comment.CommentRepository;
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
-import ShallWe.Refactoring.service.OrderService;
-import ShallWe.Refactoring.service.PartyMemberService;
-import ShallWe.Refactoring.service.TagService;
-import ShallWe.Refactoring.service.UserService;
+import ShallWe.Refactoring.service.*;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +51,9 @@ public class TestDBInit {
     private OrderService orderService;
     @Autowired
     private TagService tagService;
+    @Autowired
+    private CommentService commentService;
+
     @Autowired
     private PartyMemberRepository partyMemberRepository;
     @Autowired
@@ -164,12 +165,13 @@ public class TestDBInit {
     public void create() throws Exception {
         Order order = orderService.findOrder(1L);
         User user = userService.findUser(2L);
-        Comment comment = Comment.builder()
-                .order(order)
-                .user(user)
-                .content("댓글 작성 합니다")
-                .status(CommentStatus.NORMAL)
-                .build();
+//        CommentRequest commentReq = CommentRequest.builder()
+//                .orderId(1L)
+//                .userId(1L)
+//                .content("댓글 작성 합니다")
+//                .build();
+
+        Comment comment = commentService.createComment(order,user,"댓글작성합니다");
 
         commentRepository.save(comment);
         order.addComment(comment);
