@@ -5,6 +5,5 @@ spring:
   jpa:
     properties:
       hibernate:
-        ddl-auto: create
         show_sql: true #sql문 보이도록
         format_sql: true  #sql문 계층식 표현
