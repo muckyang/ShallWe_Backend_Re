@@ -33,60 +33,60 @@ import static org.hamcrest.core.Is.is;
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
 
-    @Autowired
-    MockMvc mvc;
-
-    @MockBean
-    UserService userService;
-
-    @BeforeEach
-    public void before() {
-        UserRequest request = UserRequest.builder()
-                .id(1L)
-                .name("Joe")
-                .password("12341234")
-                .email("12341234")
-                .nickname("nickname")
-                .city("12341234").street("12341234").detail("12341234")
-                .year(2012).month(5).day(12)
-                .build();
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-
-
-        ArrayList<UserResponse> userList = new ArrayList<>();
-        userList.add(new UserResponse(new User(request)));
-        given(this.userService.findAll()).willReturn(userList);
-        given(this.userService.findUser(1L)).willReturn(new User(request));
-    }
-
-
-    @Test
-    @DisplayName("유저 목록 출력")
-    public void getUsers() throws Exception {
-        System.out.println("=========================GET USERS=======================");
-        mvc.perform(get("/api/user-all").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andDo(print());
-    }
-
-    @Test
-    @DisplayName("유저 GET")
-    public void getUser() throws Exception {
-        System.out.println("=========================GET USER 1=======================");
-        mvc.perform(get("/api/users/" + 1).accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("Joe")))
+//    @Autowired
+//    MockMvc mvc;
+//
+//    @MockBean
+//    UserService userService;
+//
+//    @BeforeEach
+//    public void before() {
+//        UserRequest request = UserRequest.builder()
+//                .id(1L)
+//                .name("Joe")
+//                .password("12341234")
+//                .email("12341234")
+//                .nickname("nickname")
+//                .city("12341234").street("12341234").detail("12341234")
+//                .year(2012).month(5).day(12)
+//                .build();
+////        ObjectMapper mapper = new ObjectMapper();
+////        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+//
+//
+//        ArrayList<UserResponse> userList = new ArrayList<>();
+//        userList.add(new UserResponse(new User(request)));
+//        given(this.userService.findAll()).willReturn(userList);
+//        given(this.userService.findUser(1L)).willReturn(new User(request));
+//    }
+//
+//
+//    @Test
+//    @DisplayName("유저 목록 출력")
+//    public void getUsers() throws Exception {
+//        System.out.println("=========================GET USERS=======================");
+//        mvc.perform(get("/api/user-all").accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
 //                .andDo(MockMvcResultHandlers.print())
-                .andDo(print());
-
-        ResultActions actions =
-                mvc.perform(get("/api/users/" + 1).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
-
-        actions.andDo(print()) ;
-    }
+//                .andDo(print());
+//    }
+//
+//    @Test
+//    @DisplayName("유저 GET")
+//    public void getUser() throws Exception {
+//        System.out.println("=========================GET USER 1=======================");
+//        mvc.perform(get("/api/users/" + 1).accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.name", is("Joe")))
+////                .andDo(MockMvcResultHandlers.print())
+//                .andDo(print());
+//
+//        ResultActions actions =
+//                mvc.perform(get("/api/users/" + 1).contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
+//
+//
+//        actions.andDo(print()) ;
+//    }
 
 }
