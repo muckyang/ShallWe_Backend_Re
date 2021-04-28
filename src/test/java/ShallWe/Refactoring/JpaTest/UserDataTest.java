@@ -10,13 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DataJpaTest(properties = {"spring.config.location=classpath:application-init.yml"})
+@DataJpaTest(
+        properties = {"spring.config.location=classpath:application-init.yml"}
+)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserDataTest {
 
     @Autowired
@@ -44,8 +48,5 @@ public class UserDataTest {
         userRepository.findAll().forEach(System.out::println);
 
         assertThat(user).isEqualTo(userRepository.getOne(user.getId()));
-
     }
-
-
 }
