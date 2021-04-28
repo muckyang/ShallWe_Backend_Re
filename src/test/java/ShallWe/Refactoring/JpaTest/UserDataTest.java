@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest(properties = {"spring.config.location=classpath:application-test.yml"})
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserDataTest {
 
     @Autowired
