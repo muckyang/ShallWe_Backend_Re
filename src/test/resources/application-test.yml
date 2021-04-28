@@ -3,8 +3,6 @@ spring:
     ansi:
       enabled: always
   jpa:
-    hibernate:
-      ddl-auto: create #create , create-drop , update , validate, none
     properties:
       hibernate:
         show_sql: true
