@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DataJpaTest(properties = {"spring.config.location=classpath:application-test.yml"})
+@DataJpaTest(properties = {"spring.config.location=classpath:application-init.yml"})
 public class OrderDataTest {
 
     @Autowired

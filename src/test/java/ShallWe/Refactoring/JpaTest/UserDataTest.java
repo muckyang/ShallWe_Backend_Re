@@ -12,10 +12,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DataJpaTest(properties = {"spring.config.location=classpath:application-test.yml"})
+@DataJpaTest(properties = {"spring.config.location=classpath:application-init.yml"})
 public class UserDataTest {
 
     @Autowired
@@ -23,6 +24,7 @@ public class UserDataTest {
 
     @Test
     @DisplayName("회원 생성 및 조회")
+    @Transactional
     public void userSave() throws Exception {
         User user = User.builder()
                 .name("Joe")
