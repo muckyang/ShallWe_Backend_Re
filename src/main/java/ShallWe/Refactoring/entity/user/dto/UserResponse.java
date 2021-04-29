@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@ToString
+@ToString(of = {"id","name"})
 public class UserResponse {
     private Long id;
     private String email;

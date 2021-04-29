@@ -10,7 +10,7 @@ spring:
     username: sa
     password:
     platform: h2 # datasource 타입 플랫폼 정의
-#    data: classpath:db/h2/data.sql
+    data: classpath:db/h2/data.sql
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
