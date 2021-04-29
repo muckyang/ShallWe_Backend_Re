@@ -17,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DataJpaTest(
-        properties = {"spring.config.location=classpath:application-init.yml"}
-)
+@DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserDataTest {
 

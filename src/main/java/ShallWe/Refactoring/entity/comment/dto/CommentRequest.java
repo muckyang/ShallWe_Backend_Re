@@ -2,20 +2,20 @@ package ShallWe.Refactoring.entity.comment.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
-
+@Getter
 public class CommentRequest {
     @NotBlank
-    private Long orderId;
+    private final Long userId;
     @NotBlank
-    private Long userId;
+    private final String content;
     @NotBlank
-    private String content;
+    private final Long orderId;
     @Builder
-    protected CommentRequest(@NotBlank Long orderId, @NotBlank Long userId, @NotBlank String content) {
+    protected CommentRequest(Long orderId,Long userId,String content) {
         this.orderId = orderId;
         this.userId = userId;
         this.content = content;
