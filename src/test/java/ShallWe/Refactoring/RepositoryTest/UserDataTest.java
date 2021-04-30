@@ -1,21 +1,23 @@
-package ShallWe.Refactoring.JpaTest;
+package ShallWe.Refactoring.RepositoryTest;
 
 import ShallWe.Refactoring.entity.address.Address;
 import ShallWe.Refactoring.entity.user.Info;
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.repository.user.UserRepository;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.BDDAssertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -38,8 +40,9 @@ public class UserDataTest {
                         .street("12341234")
                         .detail("12341234")
                         .build())
-                .info(new Info(2012, 5, 12))
+                .info(Info.builder().year(2012).month(5).day(12).build())
                 .build();
+
         System.out.println(user.toString());
 
         userRepository.save(user);
@@ -47,4 +50,16 @@ public class UserDataTest {
 
         assertThat(user).isEqualTo(userRepository.getOne(user.getId()));
     }
+
+    @Test
+    @DisplayName("닉네임 중복 체크 테스트")
+    public void DuplicateNicknameTest(){
+        String duplicateNick = "nick1673";
+        String newNick = "nick1673234";
+        Optional<User> present = userRepository.findUserByNickname(duplicateNick);
+        assertThat(present.isPresent()).isEqualTo(true);
+        Optional<User> empty = userRepository.findUserByNickname(newNick);
+        assertThat(empty.isEmpty()).isEqualTo(true);
+    }
+
 }

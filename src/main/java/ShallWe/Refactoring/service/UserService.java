@@ -7,6 +7,7 @@ import ShallWe.Refactoring.entity.user.dto.UserResponse;
 import ShallWe.Refactoring.exception.DuplicationNicknameException;
 import ShallWe.Refactoring.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,17 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+//    @Autowired
+//    ModelMapper modelMapper;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    public UserResponse save(UserRequest request) {
-        User user = new User(request);
-        return new UserResponse(userRepository.save(user));
+    public Long save(UserRequest request) throws Exception {
+        if (canUseNickname(request.getNickname())) {
+            return userRepository.save(request.toEntity()).getId();
+        } else {
+            throw new IllegalArgumentException("이미 존재하는 닉네임 입니다.");
+        }
     }
 
     public User findUser(Long id) {
@@ -62,7 +65,7 @@ public class UserService {
         return userRepository.getUserScroll(pageable);
     }
 
-    public boolean canUseNickname(String nickname)throws Exception{
+    public boolean canUseNickname(String nickname) throws Exception {
         Optional<User> userOpt = userRepository.findUserByNickname(nickname);
         return userOpt.isEmpty();
     }

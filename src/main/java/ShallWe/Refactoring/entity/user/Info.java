@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 @Embeddable
 @Getter
-@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString(of = {"point","grade","birthday","userStatus"})
 @NoArgsConstructor
@@ -24,6 +23,7 @@ public class Info {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
+    @Builder
     public Info(int year, int month, int day) {
         this.birthday = LocalDate.of(year, month, day);
         this.setPoint(1000);

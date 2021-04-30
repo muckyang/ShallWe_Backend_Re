@@ -1,5 +1,6 @@
 package ShallWe.Refactoring;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,9 +23,15 @@ public class RunApplication {
     public AuditorAware<String> auditorProvider(){
         return ()-> Optional.of(UUID.randomUUID().toString());
     }
-    @PostConstruct
-    void started() {
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
+
+
+//    @PostConstruct
+//    void started() {
+//        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+//    }
 
 }

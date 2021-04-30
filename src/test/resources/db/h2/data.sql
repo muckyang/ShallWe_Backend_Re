@@ -1,7 +1,7 @@
 
 INSERT INTO user (create_time, city,detail, street, email, birthday, grade, point, status, name, nickname ,password)VALUES
 	('2021-04-27 11:01:48.594485', 'seoul', 'room 11673', '1673street', 'user1673@naver.com', '2013-03-08', 2, 1000, 'ACTIVE', 'Clone1673', 'nick1673', '12341234'),
-	('2021-04-27 11:01:48.594485', 'seoul', 'room 116755', '116755street', 'user1167555@naver.com', '2013-03-08', 2, 1000, 'ACTIVE', 'Clone1673', 'nick1673', '12341234'),
+	('2021-04-27 11:01:48.594485', 'seoul', 'room 116755', '116755street', 'user1167555@naver.com', '2013-03-08', 2, 1000, 'ACTIVE', 'Clone1623', 'nick1674', '12341234'),
 	('2021-04-27 11:01:50.376906', 'seoul', 'room 199716', '99716street', 'user99716@naver.com', '1994-11-18', 2, 1000, 'ACTIVE', 'Clone99716', 'nick99716', '12341234');
 
 INSERT INTO orders VALUES (1, '2021-04-27 11:01:50.562911', 'DELIVERY', 1, '치킨 같이 시켜 먹어요!', '2021-04-27 15:01:50.464900', 32000, 0, NULL, 0, '치킨먹을사람~', 1);

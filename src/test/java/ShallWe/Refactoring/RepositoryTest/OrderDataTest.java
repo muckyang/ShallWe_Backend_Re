@@ -1,4 +1,4 @@
-package ShallWe.Refactoring.JpaTest;
+package ShallWe.Refactoring.RepositoryTest;
 
 import ShallWe.Refactoring.entity.order.Category;
 import ShallWe.Refactoring.entity.order.Order;
@@ -6,11 +6,9 @@ import ShallWe.Refactoring.entity.order.OrderStatus;
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.repository.order.OrderRepository;
 import ShallWe.Refactoring.repository.user.UserRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;

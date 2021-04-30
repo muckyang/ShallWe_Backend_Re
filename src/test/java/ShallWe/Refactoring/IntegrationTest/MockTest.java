@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.boot.test.context.SpringBootTest.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -31,7 +32,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.BDDAssertions.then;
 
 
-@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class MockTest {
 
@@ -61,12 +62,24 @@ public class MockTest {
         log.info("******** END : MOC MVC test **********");
     }
 
-    public void getMember(Long userId) throws Exception {
+    @Test
+    public void getUser() throws Exception {
+        int userId = 1;
         mvc.perform(get("/api/users/" + userId))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
+
+    @Test
+    public void getAllUsers() throws Exception {
+        mvc.perform(get("/api/user-all"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andDo(print());
+    }
+
+
 
     public void getMemberRes(Long userId) throws Exception {
         ResponseEntity<UserResponse> response =
@@ -76,16 +89,15 @@ public class MockTest {
         then(response.getBody()).isNotNull();
 
     }
-    @Test
-    public void getAllOrders() throws Exception {
-        ResponseEntity<OrderResponse[]> response =
-                restTemplate.getForEntity("/api/order-all", OrderResponse[].class);
-        for( OrderResponse res : response.getBody()){
-            System.out.println(res.toString());
-        }
-        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        then(response.getBody()).isNotNull();
-
-    }
+//    @Test
+//    public void getAllOrders() throws Exception {
+//        ResponseEntity<OrderResponse[]> response =
+//                restTemplate.getForEntity("/api/order-all", OrderResponse[].class);
+//        for( OrderResponse res : response.getBody()){
+//            System.out.println(res.toString());
+//        }
+//        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        then(response.getBody()).isNotNull();
+//    }
 
 }

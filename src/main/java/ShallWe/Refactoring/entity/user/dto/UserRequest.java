@@ -1,12 +1,15 @@
 package ShallWe.Refactoring.entity.user.dto;
 
 
+import ShallWe.Refactoring.entity.address.Address;
+import ShallWe.Refactoring.entity.user.Info;
+import ShallWe.Refactoring.entity.user.User;
 import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -32,4 +35,14 @@ public class UserRequest {
     private int month;
     private int day;
 
+    public User toEntity(){
+        return User.builder()
+                .email(email)
+                .name(name)
+                .password(password)
+                .nickname(nickname)
+                .address(Address.builder().city(city).street(street).detail(detail).build())
+                .info(Info.builder().year(year).month(month).day(day).build())
+                .build();
+    }
 }

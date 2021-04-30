@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/users")
     @ApiOperation(value = "회원가입")
-    public UserResponse joinUser(@Valid @RequestBody UserRequest request) throws Exception {
+    public Long  joinUser(@Valid @RequestBody UserRequest request) throws Exception {
         return userService.save(request);
     }
 
