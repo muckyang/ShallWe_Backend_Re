@@ -26,15 +26,15 @@ public class OrderController {
     private final PartyMemberService partyMemberService;
     private final ValidationService validationService;
 
-    @PostMapping("/orders/create")
-    @ApiOperation("Order Create")
-    public OrderResponse createOrder(@Valid @RequestBody OrderRequest request) {
-        User user = userService.findUser(request.getUserId());
-        Order order = orderService.createOrder(request, user);
-        tagService.createTags(order, request.getTags());
-        partyMemberService.createPartyMember(user, order, request.getPay());
-        return new OrderResponse(order);
-    }
+//    @PostMapping("/orders/create")
+//    @ApiOperation("Order Create")
+//    public OrderResponse createOrder(@Valid @RequestBody OrderRequest request) {
+//        User user = userService.findUser(request.getUserId());
+//        Order order = orderService.createOrder(request, user);
+//        tagService.createTags(order, request.getTags());
+//        partyMemberService.createPartyMember(user, order, request.getPay());
+//        return new OrderResponse(order);
+//    }
 
     @GetMapping("/orders/{id}")
     @ApiOperation("Order Get")

@@ -1,43 +1,47 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.comment.Comment;
-import ShallWe.Refactoring.entity.comment.dto.CommentRequest;
-import ShallWe.Refactoring.entity.comment.dto.CommentResponse;
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.entity.comment.dto.*;
 import ShallWe.Refactoring.service.CommentService;
 import ShallWe.Refactoring.service.OrderService;
 import ShallWe.Refactoring.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class CommentController {
-    private final CommentService commentService;
-    private final OrderService orderService;
-    private final UserService userService;
 
-    @PostMapping("/comment")
+    private final CommentService commentService;
+
+    @PostMapping("/comment/{userId}/{orderId}")
     @ApiOperation("댓글 작성")
-    public CommentResponse addComment(@RequestBody CommentRequest request) {
-        User user = userService.findUser(request.getUserId());
-        Order order = orderService.findOrder(request.getOrderId());
-        Comment comment = commentService.createComment(order, user, request.getContent());
-        return new CommentResponse(comment);
+    public Long addComment(@PathVariable("userId") Long userId,
+                           @PathVariable("orderId") Long orderId,
+                           @RequestBody CommentSaveRequestDto request) {
+        return commentService.createComment(userId, orderId, request);
     }
 
-    @PatchMapping("/comment/{commentId}")
-    @ApiOperation("댓글 수정")
-    public CommentResponse updateComment(@PathVariable("commentId") Long commentId,
-                                         @RequestBody CommentRequest request) {
-        String updateText = request.getContent();
-        commentService.patchText(commentId, updateText);
+    @GetMapping("/comment/{orderId}")
+    @ApiOperation("게시물의 댓글리스트")
+    public List<CommentListResponseDto> orderComments(@PathVariable("orderId") Long orderId) {
+        return commentService.getOrderComments(orderId);
+    }
 
+    @GetMapping("/comment/{commentId}")
+    @ApiOperation("댓글 조회")
+    public CommentResponseDto getComment(@PathVariable("commentId") Long commentId) {
         return commentService.findById(commentId);
+    }
+
+    @PutMapping("/comment/{commentId}")
+    @ApiOperation("댓글 수정")
+    public Long updateComment(@PathVariable("commentId") Long commentId,
+                              @RequestBody CommentUpdateRequestDto request) {
+        return commentService.updateComment(commentId, request);
     }
 
 }

@@ -29,9 +29,9 @@ public class OrderSearchController {
         return orderService.searchByTag(tagName);
     }
 
-    @GetMapping("/orders/searchByUserId/{id}")
-    public List<OrderResponse> searchByUser(@PathVariable("id") Long id) {
-        User user = userService.findUser(id);
-        return orderService.searchByUserId(user);
-    }
+//    @GetMapping("/orders/searchByUserId/{id}")
+//    public List<OrderResponse> searchByUser(@PathVariable("id") Long id) {
+//        User user = userService.findUser(id);
+//        return orderService.searchByUserId(user);
+//    }
 }

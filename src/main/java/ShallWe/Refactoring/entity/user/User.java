@@ -3,8 +3,8 @@ package ShallWe.Refactoring.entity.user;
 import ShallWe.Refactoring.entity.BaseEntity;
 import ShallWe.Refactoring.entity.address.Address;
 import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.user.dto.UserRequest;
-import com.sun.istack.NotNull;
+import ShallWe.Refactoring.entity.user.dto.UserSaveRequestDto;
+import ShallWe.Refactoring.entity.user.dto.UserUpdateRequestDto;
 import lombok.*;
 
 
@@ -37,23 +37,14 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private final List<Order> orders = new ArrayList<>();
 
-    public User(UserRequest request) {
-        nickname = request.getNickname();
-        name = request.getName();
-        email = request.getEmail();
-        password = request.getPassword();
-        info = Info.builder()
-                .year(request.getYear())
-                .month(request.getMonth())
-                .day(request.getDay()).build();
-        address = Address.builder()
-                .city(request.getCity())
-                .street(request.getStreet())
-                .detail(request.getDetail()).build();
-    }
-
     public void addOrder(Order order) {
         orders.add(order);
+    }
+    
+    public void update(UserUpdateRequestDto request){
+        this.nickname =request.getNickname();
+        this.name =request.getName();
+        // TODO 주소랑 상세정보 변경 로직
     }
 
 }

@@ -1,7 +1,7 @@
 package ShallWe.Refactoring.DBTest;
 
 
-import ShallWe.Refactoring.entity.user.dto.UserResponse;
+import ShallWe.Refactoring.entity.user.dto.UserListResponseDto;
 import ShallWe.Refactoring.repository.comment.CommentRepository;
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
 import ShallWe.Refactoring.service.*;
@@ -45,7 +45,7 @@ public class InMemoryTest {
     @org.junit.jupiter.api.Order(100)
     @DisplayName("유저 데이터 조회")
     public void init() {
-        List<UserResponse>userList = userService.findAll();
+        List<UserListResponseDto>userList = userService.findAll();
         userList.forEach(System.out::println);
     }
 

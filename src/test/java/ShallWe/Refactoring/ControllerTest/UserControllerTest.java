@@ -2,31 +2,12 @@ package ShallWe.Refactoring.ControllerTest;
 
 
 import ShallWe.Refactoring.controller.UserController;
-import ShallWe.Refactoring.entity.user.User;
-import ShallWe.Refactoring.entity.user.dto.UserRequest;
-import ShallWe.Refactoring.entity.user.dto.UserResponse;
-import ShallWe.Refactoring.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-import java.util.ArrayList;
-
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.core.Is.is;
 
 //DB 접근을 하지않기 떄문에 DB 설정파일 지정도 필요없다.
