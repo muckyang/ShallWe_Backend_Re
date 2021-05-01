@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Setter
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -38,8 +37,11 @@ public class Comment extends BaseEntity {
         this.order = order;
         order.addComment(this);
     }
-    public void update(String text){
-        content = text;
+
+    public void update(String content){
+        this.content = content;
         status = CommentStatus.UPDATED;
     }
+
+
 }

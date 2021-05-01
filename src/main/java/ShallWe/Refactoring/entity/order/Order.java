@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
+//@Setter
 // 없앨수는 없음 변경이 필요한 경우도 있기 때문 아니면 SET메소드 다 작성해야함
 @Builder
 @NoArgsConstructor

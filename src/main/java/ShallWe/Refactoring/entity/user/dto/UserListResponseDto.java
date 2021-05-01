@@ -4,16 +4,16 @@ package ShallWe.Refactoring.entity.user.dto;
 import ShallWe.Refactoring.entity.address.Address;
 import ShallWe.Refactoring.entity.user.User;
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
 @NoArgsConstructor
-@ToString(of = {"id","name"})
-public class UserResponse {
+@ToString(of = {"name","email"})
+public class UserListResponseDto {
     private Long id;
     private String email;
     private String name;
@@ -26,13 +26,13 @@ public class UserResponse {
     private int day;
 
     @QueryProjection
-    public UserResponse(User user) {
-        setId(user.getId());
-        setEmail(user.getEmail());
-        setName(user.getName());
-        setNickname(user.getNickname());
-        setAddress(user.getAddress());
-        setBirthDay(user.getInfo().getBirthday());
+    public UserListResponseDto(User entity) {
+        this.id = entity.getId();
+        this.email = entity.getEmail();
+        this.name = entity.getName();
+        this.nickname = entity.getNickname();
+        setAddress(entity.getAddress());
+        setBirthDay(entity.getInfo().getBirthday());
     }
 
     private void setAddress(Address address) {

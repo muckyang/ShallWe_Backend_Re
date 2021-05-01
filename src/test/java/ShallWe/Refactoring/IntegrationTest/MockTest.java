@@ -1,7 +1,6 @@
 package ShallWe.Refactoring.IntegrationTest;
 
-import ShallWe.Refactoring.entity.order.dto.OrderResponse;
-import ShallWe.Refactoring.entity.user.dto.UserResponse;
+import ShallWe.Refactoring.entity.user.dto.UserListResponseDto;
 import ShallWe.Refactoring.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 import static org.hamcrest.core.Is.is;
-import static org.springframework.boot.test.context.SpringBootTest.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -82,22 +80,12 @@ public class MockTest {
 
 
     public void getMemberRes(Long userId) throws Exception {
-        ResponseEntity<UserResponse> response =
-                restTemplate.getForEntity("/api/users/" + userId, UserResponse.class);
+        ResponseEntity<UserListResponseDto> response =
+                restTemplate.getForEntity("/api/users/" + userId, UserListResponseDto.class);
 
         then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         then(response.getBody()).isNotNull();
 
     }
-//    @Test
-//    public void getAllOrders() throws Exception {
-//        ResponseEntity<OrderResponse[]> response =
-//                restTemplate.getForEntity("/api/order-all", OrderResponse[].class);
-//        for( OrderResponse res : response.getBody()){
-//            System.out.println(res.toString());
-//        }
-//        then(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        then(response.getBody()).isNotNull();
-//    }
 
 }

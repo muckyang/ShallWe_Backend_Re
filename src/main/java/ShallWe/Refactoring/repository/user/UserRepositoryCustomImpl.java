@@ -1,10 +1,7 @@
 package ShallWe.Refactoring.repository.user;
 
-import ShallWe.Refactoring.entity.user.QUser;
-import ShallWe.Refactoring.entity.user.dto.QUserResponse;
+import ShallWe.Refactoring.entity.user.dto.*;
 import ShallWe.Refactoring.entity.user.User;
-import ShallWe.Refactoring.entity.user.dto.UserRequest;
-import ShallWe.Refactoring.entity.user.dto.UserResponse;
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.*;
@@ -23,15 +20,15 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<UserResponse> findUserAll() {
+    public List<UserListResponseDto> findUserAll() {
         return queryFactory
-                .select(new QUserResponse(user))
+                .select(new QUserListResponseDto(user))
                 .from(user)
                 .fetch();
     }
 
     @Override
-    public Page<UserResponse> getUserPaging(Pageable pageable) {
+    public Page<UserListResponseDto> getUserPaging(Pageable pageable) {
 
         QueryResults<User> result = queryFactory
                 .selectFrom(user)
@@ -39,25 +36,25 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
                 .limit(pageable.getPageSize())
                 .fetchResults();
 
-        List<UserResponse> content = new ArrayList<>();
+        List<UserListResponseDto> content = new ArrayList<>();
         for (User eachUser : result.getResults()) {
-            content.add(new UserResponse(eachUser));
+            content.add(new UserListResponseDto(eachUser));
         }
         long total = result.getTotal();
         return new PageImpl<>(content, pageable, total);
     }
 
     @Override
-    public Slice<UserResponse> getUserScroll(Pageable pageable) {
+    public Slice<UserListResponseDto> getUserScroll(Pageable pageable) {
         QueryResults<User> result = queryFactory
                 .selectFrom(user)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize() + 1)
                 .fetchResults();
 
-        List<UserResponse> content = new ArrayList<>();
+        List<UserListResponseDto> content = new ArrayList<>();
         for (User eachUser : result.getResults()) {
-            content.add(new UserResponse(eachUser));
+            content.add(new UserListResponseDto(eachUser));
         }
 
         boolean hasNext = false;

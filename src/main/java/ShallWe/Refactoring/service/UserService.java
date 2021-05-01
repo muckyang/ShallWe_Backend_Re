@@ -2,8 +2,7 @@ package ShallWe.Refactoring.service;
 
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.entity.user.UserStatus;
-import ShallWe.Refactoring.entity.user.dto.UserRequest;
-import ShallWe.Refactoring.entity.user.dto.UserResponse;
+import ShallWe.Refactoring.entity.user.dto.*;
 import ShallWe.Refactoring.exception.DuplicationNicknameException;
 import ShallWe.Refactoring.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +22,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-//    @Autowired
-//    ModelMapper modelMapper;
 
-    public Long save(UserRequest request) throws Exception {
+    public Long save(UserSaveRequestDto request) throws Exception {
         if (canUseNickname(request.getNickname())) {
             return userRepository.save(request.toEntity()).getId();
         } else {
@@ -34,16 +31,21 @@ public class UserService {
         }
     }
 
-    public User findUser(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return user.get();
-        }
-        throw new NullPointerException("Order is null");
+    public UserResponseDto findById(Long id) throws IllegalArgumentException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        return new UserResponseDto(user);
     }
 
-    public List<UserResponse> findAll() {
+    public List<UserListResponseDto> findAll() {
         return userRepository.findUserAll();
+    }
+
+    public Long update(Long id, UserUpdateRequestDto request) throws IllegalArgumentException{
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        user.update(request);
+        return id;
     }
 
     public void banUser(Long userId) {
@@ -57,11 +59,11 @@ public class UserService {
         user.getInfo().setUserStatus(UserStatus.ACTIVE);
     }
 
-    public Page<UserResponse> getUserPage(Pageable pageable) {
+    public Page<UserListResponseDto> getUserPage(Pageable pageable) {
         return userRepository.getUserPaging(pageable);
     }
 
-    public Slice<UserResponse> getUserScroll(Pageable pageable) {
+    public Slice<UserListResponseDto> getUserScroll(Pageable pageable) {
         return userRepository.getUserScroll(pageable);
     }
 
