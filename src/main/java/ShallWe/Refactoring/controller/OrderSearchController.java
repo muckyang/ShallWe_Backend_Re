@@ -1,5 +1,6 @@
 package ShallWe.Refactoring.controller;
 
+import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
 import ShallWe.Refactoring.entity.order.dto.OrderResponse;
 import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.service.OrderService;
@@ -25,13 +26,12 @@ public class OrderSearchController {
     private final TagService tagService;
 
     @GetMapping("/orders/searchByTag/{tagName}")
-    public List<OrderResponse> searchByTagName(@PathVariable("tagName") String tagName) {
+    public List<OrderListResponseDto> searchByTagName(@PathVariable("tagName") String tagName) {
         return orderService.searchByTag(tagName);
     }
 
-//    @GetMapping("/orders/searchByUserId/{id}")
-//    public List<OrderResponse> searchByUser(@PathVariable("id") Long id) {
-//        User user = userService.findUser(id);
-//        return orderService.searchByUserId(user);
-//    }
+    @GetMapping("/orders/searchByUserId/{userId}")
+    public List<OrderListResponseDto> searchByUser(@PathVariable("userId") Long userId) {
+        return orderService.searchByUserId(userId);
+    }
 }

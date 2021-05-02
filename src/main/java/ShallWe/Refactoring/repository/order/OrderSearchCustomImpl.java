@@ -1,7 +1,10 @@
 package ShallWe.Refactoring.repository.order;
 
 
+import ShallWe.Refactoring.entity.order.Order;
+import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
 import ShallWe.Refactoring.entity.order.dto.OrderResponse;
+import ShallWe.Refactoring.entity.order.dto.QOrderListResponseDto;
 import ShallWe.Refactoring.entity.order.dto.QOrderResponse;
 import ShallWe.Refactoring.entity.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -25,8 +28,8 @@ public class OrderSearchCustomImpl implements OrderSearchCustom {
     }
 
     @Override
-    public List<OrderResponse> searchByTagName(String tagName) {
-        List<OrderResponse> results = queryFactory.select(new QOrderResponse(tag.order))
+    public List<OrderListResponseDto> searchByTagName(String tagName) {
+        List<OrderListResponseDto> results = queryFactory.select(new QOrderListResponseDto(tag.order))
                 .from(tag)
                 .join(tag.order, order)
                 .where(tag.name.eq(tagName))
@@ -37,8 +40,8 @@ public class OrderSearchCustomImpl implements OrderSearchCustom {
     }
 
     @Override
-    public List<OrderResponse> searchByUser(User findUser) {
-        List<OrderResponse> results = queryFactory.select(new QOrderResponse(order))
+    public List<OrderListResponseDto> searchByUser(User findUser) {
+        List<OrderListResponseDto> results = queryFactory.select(new QOrderListResponseDto(order))
                 .from(order)
                 .join(order.user, user).fetchJoin()
                 .where(order.user.eq(findUser))

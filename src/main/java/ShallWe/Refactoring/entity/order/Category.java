@@ -2,13 +2,28 @@ package ShallWe.Refactoring.entity.order;
 
 
 public enum Category {
-    SHARE, DELIVERY, N_ORDER;
+    SHARE("share"), DELIVERY("delivery"), N_ORDER("n_order");
+    private String name;
 
-    public static boolean contains(String category){
-        for(Enum e : Category.values()){
-            if(e.toString().equals(category.toUpperCase()))
+    Category(String name) {
+        this.name = name;
+    }
+
+    public static boolean contains(String category) {
+        for (Enum e : Category.values()) {
+            if (e.toString().equals(category.toUpperCase()))
                 return true;
         }
         return false;
     }
+    public static Category getCategory(String string) {
+        for(Category category : Category.values()) {
+            if(category.name.equals(string)) {
+                return category;
+            }
+        }
+        throw new RuntimeException();
+    }
+
+
 }

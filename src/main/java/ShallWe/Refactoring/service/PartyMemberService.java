@@ -20,18 +20,16 @@ public class PartyMemberService {
 
     private final PartyMemberRepository partyMemberRepository;
 
-    public void createPartyMember(User user , Order order ,int price) {
-        PartyMember partyMember = PartyMember.builder()
-                .user(user)
-                .order(order)
-                .price(price)
-                .status(PartyStatus.JOIN)
-                .joinDescription("글 작성자 본인 입니다")
-                .build();
-        order.addPartyMember(partyMember);
-//        order.getMembers().add(partyMember);
-//        order.addPrice(price);
-        partyMemberRepository.save(partyMember);
+    public void create(Long userId , Long orderId ,int price) {
+//        PartyMember partyMember = PartyMember.builder()
+//                .price(price)
+//                .status(PartyStatus.JOIN)
+//                .joinDescription("글 작성자 본인 입니다")
+//                .build();
+//        order.addPartyMember(partyMember);
+////        order.getMembers().add(partyMember);
+////        order.addPrice(price);
+//        partyMemberRepository.save(partyMember);
     }
 
     public List<PartyMemberResponse> findByOrderAndStatus(Order order,PartyStatus status) {
