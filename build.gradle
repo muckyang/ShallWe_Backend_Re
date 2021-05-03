@@ -67,9 +67,7 @@ test {
 	jacoco {
 		destinationFile = file("$buildDir/jacoco/jacoco.exec")
 	}
-
 	useJUnitPlatform()
-
 	finalizedBy 'jacocoTestReport'
 }
 
