@@ -1,9 +1,9 @@
-spring:
-  output:
-    ansi:
-      enabled: always #로그 색상추가
-  jpa:
-    properties:
-      hibernate:
-        show_sql: true #sql문 보이도록
-        format_sql: true  #sql문 계층식 표현
+#spring:
+#  output:
+#    ansi:
+#      enabled: always #로그 색상추가
+#  jpa:
+#    properties:
+#      hibernate:
+#        show_sql: true #sql문 보이도록
+#        format_sql: true  #sql문 계층식 표현

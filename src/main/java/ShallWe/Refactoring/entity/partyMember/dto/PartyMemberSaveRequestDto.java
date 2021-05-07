@@ -3,13 +3,11 @@ package ShallWe.Refactoring.entity.partyMember.dto;
 import ShallWe.Refactoring.entity.order.Category;
 import ShallWe.Refactoring.entity.partyMember.PartyMember;
 import ShallWe.Refactoring.entity.partyMember.PartyStatus;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class PartyMemberSaveRequestDto {
     private int price;
