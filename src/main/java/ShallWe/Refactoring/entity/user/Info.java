@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Embeddable
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString(of = {"point","grade","birthday","userStatus"})
+@ToString(of = {"point", "grade", "birthday", "userStatus"})
 @NoArgsConstructor
 public class Info {
     private int point;
@@ -34,8 +34,13 @@ public class Info {
         this.point = point;
         this.grade = (point / 1000) + 1;
     }
-    public void setUserStatus(UserStatus status){
-        this.userStatus = status;
+
+    public void ban() {
+        this.userStatus = UserStatus.BAN;
+    }
+
+    public void active() {
+        this.userStatus = UserStatus.ACTIVE;
     }
 
 }

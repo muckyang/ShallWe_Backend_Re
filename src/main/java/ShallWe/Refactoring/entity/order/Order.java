@@ -9,6 +9,7 @@ import ShallWe.Refactoring.entity.partyMember.PartyMember;
 import ShallWe.Refactoring.entity.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString(of = {"user", "title", "description", "category", "status", "goalPrice", "sumPrice", "endTime"})
+@ToString(of = {"id","title", "description", "category", "status", "goalPrice", "sumPrice", "endTime"})
 @Table(name = "orders")
 public class Order extends BaseEntity {
     @Id
@@ -38,10 +39,6 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    @Builder.Default
-    private List<Comment> comments = new ArrayList<>();
-
     private String title;
     private String description;
     private int goalPrice;
@@ -50,23 +47,23 @@ public class Order extends BaseEntity {
     private int likeCount;
     private int commentCount;
 
+    @OneToMany(mappedBy = "order")
+    private List<Comment> comments = new ArrayList<>();
+
     @OneToMany(mappedBy = "order",cascade = CascadeType.REMOVE)
-    @Builder.Default
     private List<OrderLike> orderLikeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.REMOVE)
-    @Builder.Default
     private List<Tag> tags = new ArrayList<>();
 
-    // TODO 기존 Temp 필드 삭제) 저장, 임시저장, 활성화 확인 필드.
     // TODO image, url, Kakao Talk link 추가
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
-    @Builder.Default
     private List<PartyMember> members = new ArrayList<>();
 
     @Column(name = "order_end_time")
     private LocalDateTime endTime;
+
 
 
     // 연관 관계 편의 메소드

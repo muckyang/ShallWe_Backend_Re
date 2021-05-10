@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@ToString(of = {"name", "email", "nickname", "address", "info",})
+@ToString(of = {"name", "email", "nickname", "address", "info"})
 @Table(name = "user")
 public class User extends BaseEntity {
     @Id
@@ -46,5 +46,7 @@ public class User extends BaseEntity {
         this.name =request.getName();
         // TODO 주소랑 상세정보 변경 로직
     }
+
+
 
 }

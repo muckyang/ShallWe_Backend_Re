@@ -1,11 +1,10 @@
 package ShallWe.Refactoring.controller;
 
 import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.partyMember.PartyMember;
+import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
+import ShallWe.Refactoring.entity.order.dto.OrderResponseDto;
 import ShallWe.Refactoring.entity.partyMember.PartyStatus;
-import ShallWe.Refactoring.entity.partyMember.dto.PartyMemberRequest;
 import ShallWe.Refactoring.entity.partyMember.dto.PartyMemberResponse;
-import ShallWe.Refactoring.entity.user.User;
 import ShallWe.Refactoring.service.OrderService;
 import ShallWe.Refactoring.service.PartyMemberService;
 import ShallWe.Refactoring.service.UserService;
@@ -13,7 +12,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,25 +37,25 @@ public class PartyMemberController {
 //        return "PartyMember Add request Success";
 //    }
 
-    @GetMapping("/join-members/{orderId}")
-    @ApiOperation("Get Join List")
-    public List<PartyMemberResponse> getJoinedMembers(@PathVariable("orderId") Long orderId) {
-        Order order = orderService.findOrder(orderId);
-        List<PartyMemberResponse> partyMembers = partyMemberService.findByOrderAndStatus(order, PartyStatus.JOIN);
-        logger.info(partyMembers.size() + "");
+//    @GetMapping("/join-members/{orderId}")
+//    @ApiOperation("Get Join List")
+//    public List<PartyMemberResponse> getJoinedMembers(@PathVariable("orderId") Long orderId) {
+//        OrderResponseDto order = orderService.findById(orderId);
+//        List<PartyMemberResponse> partyMembers = partyMemberService.findByOrderAndStatus(order, PartyStatus.JOIN);
+//        logger.info(partyMembers.size() + "");
+//
+//        return partyMembers;
+//    }
 
-        return partyMembers;
-    }
-
-    @GetMapping("/members/{orderId}")
-    @ApiOperation("Get All List")
-    public List<PartyMemberResponse> getPartyMembers(@PathVariable("orderId") Long orderId) {
-        Order order = orderService.findOrder(orderId);
-        List<PartyMemberResponse> partyMembers = partyMemberService.findByOrder(order);
-        logger.info(partyMembers.size() + "");
-
-        return partyMembers;
-    }
+//    @GetMapping("/members/{orderId}")
+//    @ApiOperation("Get All List")
+//    public List<PartyMemberResponse> getPartyMembers(@PathVariable("orderId") Long orderId) {
+//        OrderResponseDto order = orderService.findById(orderId);
+//        List<PartyMemberResponse> partyMembers = partyMemberService.findByOrder(order);
+//        logger.info(partyMembers.size() + "");
+//
+//        return partyMembers;
+//    }
 
     //TODO 게시물 주인 / 게시물 번호 / 변경될 유저
 //    @PatchMapping("/partyMembers/join/{userId}/{orderId}/{memberId}")

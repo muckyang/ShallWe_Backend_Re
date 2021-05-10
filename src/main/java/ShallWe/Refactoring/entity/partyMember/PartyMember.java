@@ -12,9 +12,9 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@ToString(of={"id","user","order","price","status"})
+@ToString(of = {"id", "user", "order", "price", "status"})
 @Table(name = "party")
-public class PartyMember  extends BaseEntity {
+public class PartyMember extends BaseEntity {
     //TODO id 필드 삭제 예정) Order, User 합쳐서 키로 활용
     @Id
     @GeneratedValue
@@ -35,25 +35,25 @@ public class PartyMember  extends BaseEntity {
     private PartyStatus status;
     private String joinDescription;
 
-    public void setStatus(PartyStatus status){
-        if(status == PartyStatus.JOIN){
+    public void setStatus(PartyStatus status) {
+        if (status == PartyStatus.JOIN) {
             this.getOrder().addPrice(this.price);
         }
         this.status = status;
     }
 
-    public void joinApprove(){
-        if(this.status == PartyStatus.WAITING){
+    public void joinApprove() {
+        if (this.status == PartyStatus.WAITING) {
             this.setStatus(PartyStatus.JOIN);
             order.addPrice(this.price);
-        }else
+        } else
             throw new IllegalStateException("is not Waiting!");
     }
 
-    public void joinCancel(){
-        if(this.status == PartyStatus.WAITING){
+    public void joinCancel() {
+        if (this.status == PartyStatus.WAITING) {
             this.setStatus(PartyStatus.CANCEL);
-        }else
+        } else
             throw new IllegalStateException("is not Waiting!");
     }
 

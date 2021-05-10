@@ -1,6 +1,7 @@
 package ShallWe.Refactoring.repository.order;
 
 import ShallWe.Refactoring.entity.order.Order;
+import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
 import ShallWe.Refactoring.entity.order.dto.OrderResponse;
 import ShallWe.Refactoring.entity.tag.QTag;
 import ShallWe.Refactoring.entity.tag.Tag;
@@ -25,7 +26,7 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom{
     }
 
     @Override
-    public Page<OrderResponse> getOrderPaging(Pageable pageable) {
+    public Page<OrderListResponseDto> getOrderPaging(Pageable pageable) {
 
         QueryResults<Order> result = queryFactory
                 .select(order).from(order)
@@ -33,9 +34,9 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom{
                 .limit(pageable.getPageSize())
                 .fetchResults();
 
-        List<OrderResponse> content = new ArrayList<>();
+        List<OrderListResponseDto> content = new ArrayList<>();
         for (Order eachOrder : result.getResults()) {
-            content.add(new OrderResponse(eachOrder));
+            content.add(new OrderListResponseDto(eachOrder));
         }
 
         long total = result.getTotal();
@@ -43,7 +44,7 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom{
     }
 
     @Override
-    public Slice<OrderResponse> getOrderScroll(Pageable pageable) {
+    public Slice<OrderListResponseDto> getOrderScroll(Pageable pageable) {
 
         QueryResults<Order> result = queryFactory
                 .selectFrom(order)
@@ -51,9 +52,9 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom{
                 .limit(pageable.getPageSize() + 1)
                 .fetchResults();
 
-        List<OrderResponse> content = new ArrayList<>();
+        List<OrderListResponseDto> content = new ArrayList<>();
         for (Order eachOrder : result.getResults()) {
-            content.add(new OrderResponse(eachOrder));
+            content.add(new OrderListResponseDto(eachOrder));
         }
 
         boolean hasNext = false;

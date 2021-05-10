@@ -12,8 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,45 +31,50 @@ public class UserService {
         }
     }
 
+    @Transactional(readOnly = true)
     public UserResponseDto findById(Long id) throws IllegalArgumentException {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        User user = findUser(id);
         return new UserResponseDto(user);
     }
 
+    @Transactional(readOnly = true)
     public List<UserListResponseDto> findAll() {
         return userRepository.findUserAll();
     }
 
-    public Long update(Long id, UserUpdateRequestDto request) throws IllegalArgumentException{
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+    public Long update(Long id, UserUpdateRequestDto request) {
+        User user = findUser(id);
         user.update(request);
         return id;
     }
 
-    public void banUser(Long userId) {
-        User user = userRepository.getOne(userId);
-        user.getInfo().setUserStatus(UserStatus.BAN);
-
+    public void banUser(Long id) {
+        User user = findUser(id);
+        user.getInfo().ban();
     }
 
-    public void activeUser(Long userId) {
-        User user = userRepository.getOne(userId);
-        user.getInfo().setUserStatus(UserStatus.ACTIVE);
+    public void activeUser(Long id) {
+        User user = findUser(id);
+        user.getInfo().active();
     }
 
+    @Transactional(readOnly = true)
     public Page<UserListResponseDto> getUserPage(Pageable pageable) {
         return userRepository.getUserPaging(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Slice<UserListResponseDto> getUserScroll(Pageable pageable) {
         return userRepository.getUserScroll(pageable);
     }
 
     public boolean canUseNickname(String nickname) throws Exception {
-        Optional<User> userOpt = userRepository.findUserByNickname(nickname);
-        return userOpt.isEmpty();
+        return userRepository.findUserByNickname(nickname).isEmpty();
+    }
+
+    private User findUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
     }
 
 }
