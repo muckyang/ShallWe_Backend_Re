@@ -1,11 +1,12 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
-import ShallWe.Refactoring.entity.order.dto.OrderResponse;
-import ShallWe.Refactoring.entity.order.dto.OrderResponseDto;
-import ShallWe.Refactoring.entity.order.dto.OrderSaveRequestDto;
-import ShallWe.Refactoring.service.*;
+import ShallWe.Refactoring.domain.order.dto.OrderListResponseDto;
+import ShallWe.Refactoring.domain.order.dto.OrderResponseDto;
+import ShallWe.Refactoring.domain.order.dto.OrderSaveRequestDto;
+import ShallWe.Refactoring.domain.order.service.OrderService;
+import ShallWe.Refactoring.domain.order.service.TagService;
+import ShallWe.Refactoring.domain.partyMember.service.PartyMemberService;
+import ShallWe.Refactoring.domain.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,6 @@ public class OrderController {
     private final UserService userService;
     private final TagService tagService;
     private final PartyMemberService partyMemberService;
-    private final ValidationService validationService;
 
     @PostMapping("/orders/create/{userId}")
     @ApiOperation("Order Create")

@@ -1,10 +1,13 @@
 package ShallWe.Refactoring.DBTest;
 
 
-import ShallWe.Refactoring.entity.user.dto.UserListResponseDto;
+import ShallWe.Refactoring.domain.comment.service.CommentService;
+import ShallWe.Refactoring.domain.order.service.OrderService;
+import ShallWe.Refactoring.domain.order.service.TagService;
+import ShallWe.Refactoring.domain.user.dto.UserListResponseDto;
 import ShallWe.Refactoring.repository.comment.CommentRepository;
 import ShallWe.Refactoring.repository.partyMember.PartyMemberRepository;
-import ShallWe.Refactoring.service.*;
+import ShallWe.Refactoring.domain.user.service.UserService;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

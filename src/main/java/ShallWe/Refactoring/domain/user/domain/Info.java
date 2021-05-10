@@ -1,0 +1,46 @@
+package ShallWe.Refactoring.domain.user.domain;
+
+
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.time.LocalDate;
+
+@Embeddable
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString(of = {"point", "grade", "birthday", "userStatus"})
+@NoArgsConstructor
+public class Info {
+    private int point;
+    private int grade;
+    private LocalDate birthday;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus;
+
+    @Builder
+    public Info(int year, int month, int day) {
+        this.birthday = LocalDate.of(year, month, day);
+        this.setPoint(1000);
+        this.userStatus = UserStatus.ACTIVE;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+        this.grade = (point / 1000) + 1;
+    }
+
+    public void ban() {
+        this.userStatus = UserStatus.BAN;
+    }
+
+    public void active() {
+        this.userStatus = UserStatus.ACTIVE;
+    }
+
+}

@@ -1,8 +1,7 @@
 package ShallWe.Refactoring.repository.tag;
 
-import ShallWe.Refactoring.entity.tag.Tag;
+import ShallWe.Refactoring.domain.order.domain.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

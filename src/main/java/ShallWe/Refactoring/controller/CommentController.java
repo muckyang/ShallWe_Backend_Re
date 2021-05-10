@@ -1,9 +1,10 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.comment.dto.*;
-import ShallWe.Refactoring.service.CommentService;
-import ShallWe.Refactoring.service.OrderService;
-import ShallWe.Refactoring.service.UserService;
+import ShallWe.Refactoring.domain.comment.dto.CommentListResponseDto;
+import ShallWe.Refactoring.domain.comment.dto.CommentResponseDto;
+import ShallWe.Refactoring.domain.comment.dto.CommentSaveRequestDto;
+import ShallWe.Refactoring.domain.comment.dto.CommentUpdateRequestDto;
+import ShallWe.Refactoring.domain.comment.service.CommentService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

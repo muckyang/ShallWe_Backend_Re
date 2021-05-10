@@ -1,11 +1,9 @@
 package ShallWe.Refactoring.RepositoryTest;
 
-import ShallWe.Refactoring.entity.address.Address;
-import ShallWe.Refactoring.entity.user.Info;
-import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.domain.user.domain.Address;
+import ShallWe.Refactoring.domain.user.domain.Info;
+import ShallWe.Refactoring.domain.user.domain.User;
 import ShallWe.Refactoring.repository.user.UserRepository;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.BDDAssertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

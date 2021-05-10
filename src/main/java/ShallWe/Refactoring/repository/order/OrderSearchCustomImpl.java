@@ -1,12 +1,9 @@
 package ShallWe.Refactoring.repository.order;
 
 
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
-import ShallWe.Refactoring.entity.order.dto.OrderResponse;
+import ShallWe.Refactoring.domain.order.dto.OrderListResponseDto;
 import ShallWe.Refactoring.entity.order.dto.QOrderListResponseDto;
-import ShallWe.Refactoring.entity.order.dto.QOrderResponse;
-import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.domain.user.domain.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

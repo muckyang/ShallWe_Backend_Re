@@ -1,7 +1,7 @@
 package ShallWe.Refactoring.IntegrationTest;
 
-import ShallWe.Refactoring.entity.user.dto.UserListResponseDto;
-import ShallWe.Refactoring.service.UserService;
+import ShallWe.Refactoring.domain.user.dto.UserListResponseDto;
+import ShallWe.Refactoring.domain.user.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
