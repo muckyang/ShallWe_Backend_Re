@@ -1,7 +1,10 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.user.dto.*;
-import ShallWe.Refactoring.service.UserService;
+import ShallWe.Refactoring.domain.user.service.UserService;
+import ShallWe.Refactoring.domain.user.dto.UserListResponseDto;
+import ShallWe.Refactoring.domain.user.dto.UserResponseDto;
+import ShallWe.Refactoring.domain.user.dto.UserSaveRequestDto;
+import ShallWe.Refactoring.domain.user.dto.UserUpdateRequestDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

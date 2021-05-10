@@ -1,20 +1,12 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
-import ShallWe.Refactoring.entity.order.dto.OrderResponseDto;
-import ShallWe.Refactoring.entity.partyMember.PartyStatus;
-import ShallWe.Refactoring.entity.partyMember.dto.PartyMemberResponse;
-import ShallWe.Refactoring.service.OrderService;
-import ShallWe.Refactoring.service.PartyMemberService;
-import ShallWe.Refactoring.service.UserService;
-import io.swagger.annotations.ApiOperation;
+import ShallWe.Refactoring.domain.order.service.OrderService;
+import ShallWe.Refactoring.domain.partyMember.service.PartyMemberService;
+import ShallWe.Refactoring.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

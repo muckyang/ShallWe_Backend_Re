@@ -1,6 +1,6 @@
 package ShallWe.Refactoring.repository.comment;
 
-import ShallWe.Refactoring.entity.comment.Comment;
+import ShallWe.Refactoring.domain.comment.domain.Comment;
 
 public interface CommentCustom {
     Comment findIdFetch(Comment target);

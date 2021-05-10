@@ -1,13 +1,9 @@
 package ShallWe.Refactoring.repository.order;
 
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.user.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import ShallWe.Refactoring.domain.order.domain.Order;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
 package ShallWe.Refactoring.repository.user;
 
 import ShallWe.Refactoring.entity.user.dto.*;
-import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.domain.user.domain.User;
+import ShallWe.Refactoring.domain.user.dto.UserListResponseDto;
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.*;

@@ -1,8 +1,8 @@
 package ShallWe.Refactoring.repository.partyMember;
 
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.partyMember.PartyStatus;
-import ShallWe.Refactoring.entity.partyMember.dto.PartyMemberResponse;
+import ShallWe.Refactoring.domain.order.domain.Order;
+import ShallWe.Refactoring.domain.partyMember.domain.PartyStatus;
+import ShallWe.Refactoring.domain.partyMember.dto.PartyMemberResponse;
 
 import java.util.List;
 

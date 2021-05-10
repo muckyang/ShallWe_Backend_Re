@@ -1,14 +1,10 @@
 package ShallWe.Refactoring.controller;
 
-import ShallWe.Refactoring.entity.order.dto.OrderListResponseDto;
-import ShallWe.Refactoring.entity.order.dto.OrderResponse;
-import ShallWe.Refactoring.entity.user.User;
-import ShallWe.Refactoring.service.OrderService;
-import ShallWe.Refactoring.service.TagService;
-import ShallWe.Refactoring.service.UserService;
-import lombok.AllArgsConstructor;
+import ShallWe.Refactoring.domain.order.dto.OrderListResponseDto;
+import ShallWe.Refactoring.domain.order.service.OrderService;
+import ShallWe.Refactoring.domain.order.service.TagService;
+import ShallWe.Refactoring.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

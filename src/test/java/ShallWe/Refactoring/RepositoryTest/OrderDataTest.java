@@ -1,10 +1,10 @@
 package ShallWe.Refactoring.RepositoryTest;
 
-import ShallWe.Refactoring.entity.order.Category;
-import ShallWe.Refactoring.entity.order.Order;
-import ShallWe.Refactoring.entity.order.OrderStatus;
-import ShallWe.Refactoring.entity.tag.Tag;
-import ShallWe.Refactoring.entity.user.User;
+import ShallWe.Refactoring.domain.order.domain.Category;
+import ShallWe.Refactoring.domain.order.domain.Order;
+import ShallWe.Refactoring.domain.order.domain.OrderStatus;
+import ShallWe.Refactoring.domain.order.domain.Tag;
+import ShallWe.Refactoring.domain.user.domain.User;
 import ShallWe.Refactoring.repository.order.OrderRepository;
 import ShallWe.Refactoring.repository.user.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +16,9 @@ import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class OrderDataTest {
@@ -73,7 +73,7 @@ public class OrderDataTest {
         assertThat(order).isEqualTo(orderRepository.getOne(order.getId()));
         System.out.println(order.getId());
 
-        System.out.println(Arrays.toString(ad));
+//        System.out.println (Arrays.toString(ad));
     }
 
 }
